@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function entreprises() {
         return $this->hasMany(Entreprise::class);
     }
+
+    public function quizz()
+    {
+        return $this->hasMany('App\Quizz');
+    }
 }

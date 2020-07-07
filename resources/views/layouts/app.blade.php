@@ -27,6 +27,11 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.min.css')}}" >
 </head>
 <body>
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -39,6 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <a>Employer</a>
                 </div>
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -88,3 +94,18 @@
     </div>
 </body>
 </html>
+<!--Start of Tawk.to Script-->
+@section('Tawkto')
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5e53d301298c395d1ce9808d/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+    @endsection

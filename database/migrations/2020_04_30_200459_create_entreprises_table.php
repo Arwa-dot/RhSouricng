@@ -19,7 +19,7 @@ class CreateEntreprisesTable extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
             $table->string('nom_entreprise');
             $table->string('nom_fondateur');
-            $table->dateTime('date_fondation');
+            $table->date('date_fondation');
             $table->string('num_tel');
             $table->string('email');
             $table->string('domaine');

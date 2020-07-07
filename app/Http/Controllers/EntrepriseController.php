@@ -22,7 +22,8 @@ class EntrepriseController extends Controller
         $entreprises = Entreprise::withoutTrashed()->oldest('nom_entreprise')->paginate(8);
 
 
-        return view ::make('entreprise.index')->with('entreprises',$entreprises);
+
+        return view('entreprise.index', compact('entreprises'));
 
     }
 
@@ -45,7 +46,8 @@ class EntrepriseController extends Controller
      */
     public function store(Request $request)
     {
-        Entreprise::create($request->all());
+        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+        Entreprise::create($inputs);
         return redirect()->route('entreprise.index')->with('info', 'votre profile est crée avec succées');
     }
 

@@ -12,8 +12,8 @@ $factory->define(Offre::class, function (Faker $faker) {
         'secteur_emploi'=>$faker->sentence,
         'type_emploi'=>$faker->sentence,
         'description'=>$faker->sentence,
-        'date_publication'=>$faker->dateTimeAD,
-        'date_limite'=>$faker->dateTime,
+        'date_publication'=>$faker->date(),
+        'date_limite'=>$faker->date(),
         'mail_recruteur'=>$faker->email,
         'salaire_propose'=>$faker->randomDigit,
         'ville'=>$faker->city

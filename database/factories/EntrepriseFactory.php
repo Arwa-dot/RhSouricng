@@ -11,7 +11,7 @@ $factory->define(Entreprise::class, function (Faker $faker) {
         'user_id' =>factory(App\User::class),
         'nom_entreprise'=>$faker->company,
         'nom_fondateur'=>$faker->userName,
-        'date_fondation'=>$faker->dateTime,
+        'date_fondation'=>$faker->date(),
         'num_tel'=>$faker->phoneNumber,
         'email'=>$faker->companyEmail,
         'domaine'=>$faker->word,

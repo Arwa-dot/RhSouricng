@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Offre;
+use App\User;
 use Illuminate\Http\Request;
 use View;
+use app\Http\Requests\OffreRequest;
 
 
 class OffreController extends Controller
@@ -25,9 +27,11 @@ class OffreController extends Controller
     {
 
         $offres = Offre::withTrashed()->oldest('titre_emploi')->paginate(5);
+        $links = $offres->setPath('')->render();
 
 
-        return view ::make('offres.index')->with ('offres',$offres);
+        return  view('offres.index', compact('offres','links'));
+
     }
 
     /**
@@ -38,7 +42,6 @@ class OffreController extends Controller
     public function create()
     {
         return view('offres.create');
-
     }
 
     /**
@@ -48,8 +51,8 @@ class OffreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        Offre::create($request->all());
+    {   $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+        Offre::create($inputs);
         return redirect()->route('offres.index')->with('info', 'Loffre a bien été créé');
 
 
@@ -105,14 +108,11 @@ class OffreController extends Controller
         $offre->delete();
         return back()->with('info', 'votre offre demploi est mis à la corbeille');
     }
-    public function forceDestroy($id)
-    {
-        Offre::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
-        return back()->with('info', 'loffre a bien été supprimé définitivement dans la base de données.');
-    }
-    public function restore($id)
-    {
-        Offre::withTrashed()->whereId($id)->firstOrFail()->restore();
-        return back()->with('info', 'Lemploi a bien été restauré.');
-    }
+    /**
+     * Remove permanentely the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+   
 }

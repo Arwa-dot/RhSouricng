@@ -5,6 +5,7 @@
             {{ session('info') }}
         </div>
     @endif
+
     <section class="header-inner header-inner-big bg-holder text-white" >
         <div class="container">
             <div class="row">

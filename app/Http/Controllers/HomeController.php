@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Entreprise;
+use App\Offre;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $offres= Offre::withTrashed()->latest()->simplePaginate(8);
+       
+        return view('welcome',compact('offres'));
     }
 }
